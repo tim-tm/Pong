@@ -1,6 +1,9 @@
+#define SDL_MAIN_HANDLED
 #include <SDL2/SDL.h>
+
 #include <stdbool.h>
 #include <time.h>
+#include <stdio.h>
 
 const int WINDOW_WIDTH = 1280;
 const int WINDOW_HEIGHT = 720;
@@ -46,7 +49,6 @@ static void render_ball(const Ball*);
 static Player create_player(void);
 static void update_players(float);
 static void render_players(void);
-
 
 int main() {
     srand(time(NULL));
@@ -134,8 +136,8 @@ static bool rand_bool(void) {
 
 static Ball create_ball(int size) {
     Ball b = {
-        .x = WINDOW_WIDTH / 2 - size / 2,
-        .y = WINDOW_HEIGHT / 2 - size / 2,
+        .x = WINDOW_WIDTH / 2.f - size / 2.f,
+        .y = WINDOW_HEIGHT / 2.f - size / 2.f,
         .size = size,
         .speedX = BALL_SPEED * (rand_bool() ? 1 : -1),
         .speedY = BALL_SPEED * (rand_bool() ? 1 : -1)
