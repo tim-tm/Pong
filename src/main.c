@@ -15,7 +15,8 @@ typedef struct Ball {
     int size;
 } Ball;
 
-const float BALL_SPEED = 130.f;
+const float MAX_BALL_SPEED = 600.f;
+float BALL_SPEED = 130.f;
 
 typedef struct Player {
     int score;
@@ -25,7 +26,7 @@ typedef struct Player {
 const int PLAYER_WIDTH = 20;
 const int PLAYER_HEIGHT = 75;
 const int PLAYER_MARGIN = 10;
-const float PLAYER_SPEED = 150.f;
+float PLAYER_SPEED = 150.f;
 
 Player player;
 Player aiPlayer;
@@ -172,6 +173,11 @@ static void update_ball(Ball* ball, float elapsed) {
         served = !served;
         aiPlayer.y = WINDOW_HEIGHT / 2 - PLAYER_HEIGHT / 2;
         player.y = WINDOW_HEIGHT / 2 - PLAYER_HEIGHT / 2;
+        
+        if (BALL_SPEED < MAX_BALL_SPEED) {
+            BALL_SPEED *= 2.f;
+            PLAYER_SPEED *= 1.5f;
+        }
     }
 
     if (ball->y < BALL_SIZE / 2 || ball->y > WINDOW_HEIGHT - BALL_SIZE / 2) {
