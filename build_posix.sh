@@ -1,2 +1,3 @@
 #!/bin/bash
-cc -Wall -Wextra -o pong src/main.c -lSDL2
+mkdir build
+cc -Wall -Wextra -o build/pong src/main.c -lSDL2
